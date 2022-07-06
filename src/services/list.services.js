@@ -19,7 +19,7 @@ const createListService = async (newList) => {
 };
 
 const updateListService = async (id, listEdited) => {
-  const listUpdate = await Lists.findByIdAndUpdate(id, listEdited )
+  const listUpdate = await Lists.findByIdAndUpdate(id, listEdited ).setOptions({ returnOriginal: false })
   return listUpdate;
 };
 

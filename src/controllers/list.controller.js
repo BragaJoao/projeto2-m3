@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const findAllListsController = async (req, res) => {
   const lists = await listsService.findAllListsService();
-  res.send(lists);
+  res.status(200).send(lists);
 };
 
 const findByIdListController = async (req, res) => {
@@ -13,7 +13,7 @@ const findByIdListController = async (req, res) => {
   if (!chosenList) {
     return res.status(404).send({ message: 'Tarefa não encontrada!' });
   }
-  res.send(chosenList);
+  res.status(200).send(chosenList);
 };
 
 const createListController = async (req, res) => {
@@ -26,13 +26,13 @@ const updateListController = async (req, res) => {
   const id = req.params.id;
   const listEdit = req.body;
   const updatedList = await listsService.updateListService(id, listEdit);
-  res.send(updatedList);
+  res.status(200).send(updatedList);
 };
 
 const deleteListController = async (req, res) => {
   const id = req.params.id;
   await listsService.deleteListService(id);
-  res.send({ message: 'Item deletado com sucesso!' });
+  res.status(200).send({ message: 'Item deletado com sucesso!' });
 };
 
 module.exports = {

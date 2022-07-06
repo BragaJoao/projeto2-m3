@@ -1,0 +1,197 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "To Do List",
+    "description": "API para CRUD de lista de tarefas",
+    "termsOfService": "",
+    "contact": {
+      "email": "joaogbraga@hotmail.com.br"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/lists",
+      "description": "API de teste"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Lista de todas as tarefas",
+        "description": "Rota responsável por listar todas as tarefas",
+        "tags": ["Lists"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/List"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+
+      "post": {
+        "summary": "Cadastrar uma tarefa",
+        "description": "Rota responsável por cadastrar uma tarefa",
+        "tags": ["Lists"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/List"
+              },
+              "examples": {
+                "List": {
+                  "value": {
+                    "text": "Este é um exemplo, adicione um novo item para começar a criar a sua lista."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Preecha o campo da sua lista!"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/List"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id}": {
+        "get": {
+          "summary": "Busca uma tarefa pelo ID",
+          "description": "Rota responsável por buscar uma tarefa pelo ID",
+          "tags": ["Lists"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID da tarefa para a busca",
+              "required": true
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "ID Inválido!"
+            },
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/List"
+                  },
+                  "examples": {
+                    "List": {
+                      "value": {
+                        "text": "Esse é o seu ID"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Editar uma tarefa pelo ID",
+          "description": "Rota responsável por editar uma tarefa pelo ID",
+          "tags": ["Lists"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID da tarefa para a busca",
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/List"
+                },
+                "examples": {
+                  "List": {
+                    "value": {
+                      "text": "Essa é uma lista editada"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "400": {
+              "description": "ID Inválido ou Envie o todos os campos da lista!"
+            },
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/List"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Apagar uma tarefa pelo ID",
+          "description": "Rota responsável por apagar uma tarefa pelo ID",
+          "tags": ["Lists"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID da tarefa para a deleção",
+              "required": true
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "ID Inválido!"
+            },
+            "200": {
+              "description": "Tarefa deletada!"
+            }
+          }
+        }
+      }
+    },
+  "components": {
+    "schemas": {
+        "List":{
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string" 
+                }
+            }
+        }
+    }
+  }
+}
+
