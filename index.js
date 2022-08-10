@@ -3,7 +3,7 @@ const cors = require('cors');
 const routes = require('./src/routes/list.route')
 const connectToDatabase = require('./src/database/database')
 
-const port = 3000;
+const port = 3001;
 const app = express();
 
 connectToDatabase();
@@ -11,7 +11,7 @@ connectToDatabase();
 app.use(cors());
 app.use(express.json());
 
-app.use('/lists/', routes)
+app.use('/list', routes)
 
 
 app.listen(port, () => {
