@@ -11,7 +11,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000/lists",
+      "url": "http://localhost:3001/list",
       "description": "API de teste"
     }
   ],
