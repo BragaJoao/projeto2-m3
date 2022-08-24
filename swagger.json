@@ -11,6 +11,10 @@
   },
   "servers": [
     {
+      "url": "https://api-frases-textos.herokuapp.com/",
+      "description": "Deploy's URL"
+    },
+    {
       "url": "http://localhost:3001/list",
       "description": "API de teste"
     }
